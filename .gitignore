@@ -1,0 +1,28 @@
+/node_modules
+/dist
+/build
+
+# Folder Dependensi
+/node_modules
+
+# Folder Build/Output
+/dist
+/build
+
+# File Log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# File Sistem Operasi
+.DS_Store
+Thumbs.db
+
+# File Editor Kode
+.vscode/
+
+# File Sensitif / Spesifik Lingkungan
+STUDENT.txt
+.env
+.env.local

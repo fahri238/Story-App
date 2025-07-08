@@ -45,7 +45,7 @@ Aplikasi ini dibangun sebagai **Proyek Akhir** untuk kelas _"Belajar Front-End W
 
 ```bash
 # Clone repositori ini:
-git clone https://github.com/NAMA_USER_ANDA/NAMA_REPO_ANDA.git
+git clone https://github.com/fahri238/Story-App.git
 
 # Masuk ke direktori proyek:
 cd NAMA_REPO_ANDA

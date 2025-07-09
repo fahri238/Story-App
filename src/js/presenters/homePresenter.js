@@ -65,9 +65,6 @@ class HomePresenter {
           }
 
           event.target.innerText = "Tersimpan";
-          console.log(
-            `Cerita dengan ID ${storyId} dan gambarnya berhasil disimpan.`
-          );
         } catch (error) {
           event.target.innerText = "Gagal";
           setTimeout(() => {

@@ -19,27 +19,19 @@ module.exports = merge(common, {
             cacheName: "story-app-pages",
           },
         },
-        // ====================================================================
-        // ATURAN BARU DI SINI:
-        // Menambahkan aturan untuk menyimpan cache gambar dari API.
-        // ====================================================================
         {
-          // Cache gambar dari API dengan strategi CacheFirst
           urlPattern: ({ url }) =>
             url.href.startsWith("https://story-api.dicoding.dev/images/"),
           handler: "CacheFirst",
           options: {
             cacheName: "story-images-cache",
             expiration: {
-              // Simpan hingga 50 gambar
               maxEntries: 50,
-              // Simpan selama 30 hari
               maxAgeSeconds: 30 * 24 * 60 * 60,
             },
           },
         },
         {
-          // Cache font dari Google
           urlPattern: ({ url }) =>
             url.href.startsWith("https://fonts.googleapis.com/") ||
             url.href.startsWith("https://fonts.gstatic.com/"),

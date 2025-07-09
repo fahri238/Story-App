@@ -106,6 +106,27 @@ class StoryApiSource {
     }
     return responseJson.story;
   }
+  static async subscribePushNotification(subscription) {
+    const userToken = localStorage.getItem(CONFIG.USER_TOKEN_KEY);
+    if (!userToken) {
+      throw new Error("Anda harus login untuk berlangganan notifikasi.");
+    }
+
+    const response = await fetch(`${CONFIG.BASE_URL}/notifications/subscribe`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+      body: JSON.stringify(subscription),
+    });
+
+    const responseJson = await response.json();
+    if (responseJson.error) {
+      throw new Error(responseJson.message);
+    }
+    return responseJson;
+  }
 }
 
 export default StoryApiSource;

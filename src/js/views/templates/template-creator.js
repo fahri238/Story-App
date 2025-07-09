@@ -1,27 +1,36 @@
-const createStoryItemTemplate = (story) => `
-  <article class="story-item">
-    <img class="story-item__image" src="${story.photoUrl}" alt="Gambar dari ${
-  story.name
-}">
-    <div class="story-item__content">
-      <h3 class="story-item__name">${story.name}</h3>
-      <p class="story-item__date">${new Date(
-        story.createdAt
-      ).toLocaleDateString("id-ID", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })}</p>
-      <p class="story-item__description">${story.description.substring(
-        0,
-        150
-      )}...</p>
-      <a href="#/detail/${
-        story.id
-      }" class="story-item__detail-link">Lihat Detail</a>
-    </div>
-  </article>
-`;
+const createStoryItemTemplate = (story, isSaved) => {
+  const buttonHtml = isSaved
+    ? '<button class="button-save-offline" disabled>Tersimpan</button>'
+    : `<button class="button-save-offline" data-id="${story.id}">Simpan Offline</button>`;
+
+  return `
+    <article class="story-item">
+      <img class="story-item__image" src="${story.photoUrl}" alt="Gambar dari ${
+    story.name
+  }">
+      <div class="story-item__content">
+        <h3 class="story-item__name">${story.name}</h3>
+        <p class="story-item__date">${new Date(
+          story.createdAt
+        ).toLocaleDateString("id-ID", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}</p>
+        <p class="story-item__description">${story.description.substring(
+          0,
+          150
+        )}...</p>
+        <div class="story-item__actions">
+          <a href="#/detail/${
+            story.id
+          }" class="story-item__detail-link">Lihat Detail</a>
+          ${buttonHtml}
+        </div>
+      </div>
+    </article>
+  `;
+};
 
 const createLoginFormTemplate = () => `
   <div class="form-container">

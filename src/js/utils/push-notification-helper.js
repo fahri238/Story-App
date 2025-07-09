@@ -1,3 +1,5 @@
+import StoryApiSource from "../model/story-api-source.js";
+
 const PushNotification = {
   VAPID_PUBLIC_KEY:
     "BCCs2eonMI-6H2ctvFaWg-UYdDv387Vno_bzUzALpB442r2lCnsHmtrx8biyPi_E-1fSGABK_Qs_GlvPoJJqxbk",
@@ -30,12 +32,15 @@ const PushNotification = {
             this.VAPID_PUBLIC_KEY
           ),
         });
-      console.log(
-        "Successfully subscribed to push notifications:",
-        subscription
-      );
+
+      const subscriptionJson = subscription.toJSON();
+      delete subscriptionJson.expirationTime;
+
+      console.log("Successfully subscribed. Sending to server...");
+      await StoryApiSource.subscribePushNotification(subscriptionJson);
+      console.log("Subscription sent to server successfully.");
     } catch (error) {
-      console.error("Failed to subscribe to push notifications:", error);
+      console.error("Failed to subscribe or send push notifications:", error);
     }
   },
 

@@ -442,3 +442,36 @@ footer {
   color: var(--white-color);
   border-color: var(--primary-color);
 }
+
+.story-item__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.button-save-offline {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  background-color: transparent;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.button-save-offline:hover {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
+.button-save-offline:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}

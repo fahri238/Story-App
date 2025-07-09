@@ -12,26 +12,34 @@ module.exports = merge(common, {
 
       runtimeCaching: [
         {
+          // Cache halaman (App Shell)
           urlPattern: ({ request }) => request.mode === "navigate",
           handler: "StaleWhileRevalidate",
           options: {
             cacheName: "story-app-pages",
           },
         },
+        // ====================================================================
+        // ATURAN BARU DI SINI:
+        // Menambahkan aturan untuk menyimpan cache gambar dari API.
+        // ====================================================================
         {
+          // Cache gambar dari API dengan strategi CacheFirst
           urlPattern: ({ url }) =>
-            url.href.startsWith("https://story-api.dicoding.dev/v1/"),
-          handler: "NetworkFirst",
+            url.href.startsWith("https://story-api.dicoding.dev/images/"),
+          handler: "CacheFirst",
           options: {
-            cacheName: "story-api-cache",
-            networkTimeoutSeconds: 3,
+            cacheName: "story-images-cache",
             expiration: {
-              maxEntries: 100,
+              // Simpan hingga 50 gambar
+              maxEntries: 50,
+              // Simpan selama 30 hari
               maxAgeSeconds: 30 * 24 * 60 * 60,
             },
           },
         },
         {
+          // Cache font dari Google
           urlPattern: ({ url }) =>
             url.href.startsWith("https://fonts.googleapis.com/") ||
             url.href.startsWith("https://fonts.gstatic.com/"),

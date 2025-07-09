@@ -30,7 +30,7 @@ const home = {
     document.getElementById("loading-stories").style.display = "none";
   },
 
-  displayStories(stories) {
+  displayStories(stories, savedStoryIds = []) {
     const storyListContainer = document.getElementById("story-list");
     storyListContainer.innerHTML = "";
 
@@ -41,7 +41,8 @@ const home = {
     }
 
     stories.forEach((story) => {
-      storyListContainer.innerHTML += createStoryItemTemplate(story);
+      const isSaved = savedStoryIds.includes(story.id);
+      storyListContainer.innerHTML += createStoryItemTemplate(story, isSaved);
     });
   },
 
